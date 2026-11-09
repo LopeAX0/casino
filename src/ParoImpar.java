@@ -1,11 +1,13 @@
-public class ParoImpar extends Jugador{
-
-    public ParoImpar(int id) {
-        super(id);
+public class ParoImpar extends Jugador implements Runnable{
+    public ParoImpar(int id, Ruleta ru) {
+        super(id, ru);
         ganancias=20;
     }
+
+
     @Override
-    public void apostar(){
+    public boolean apostar(){
+       synchronized (this){
         try {
             numeroapostado = (int) (Math.random() * 2) ;
 
@@ -22,5 +24,11 @@ public class ParoImpar extends Jugador{
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+       }
+        return false;
+    }
+    @Override
+    public void run() {
+        apostar();
     }
 }

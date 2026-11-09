@@ -1,15 +1,18 @@
 public abstract class Jugador {
     int id;
-    int saldo=1000;
+    int saldo=20;
     int ganancias;
     int pago=10;
     int numeroapostado;
+    Ruleta RULETA;
 
-    public Jugador(int id) {
+    public Jugador(int id,Ruleta ru) {
         this.id = id;
+        this.RULETA=ru;
     }
 
-    public void apostar()  {
+    public boolean apostar()  {
+        return false;
     }
 
     public int getId() {
@@ -51,4 +54,6 @@ public abstract class Jugador {
     public void setNumeroapostado(int numeroapostado) {
         this.numeroapostado = numeroapostado;
     }
+
+    public abstract void run();
 }
