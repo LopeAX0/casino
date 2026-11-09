@@ -1,6 +1,6 @@
 public abstract class Jugador {
     int id;
-    int saldo=20;
+    int saldo=1000;
     int ganancias;
     int pago=10;
     int numeroapostado;

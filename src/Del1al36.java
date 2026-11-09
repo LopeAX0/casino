@@ -2,7 +2,7 @@ public class Del1al36 extends Jugador implements Runnable {
 
     public Del1al36(int id, Ruleta ru) {
         super(id, ru);
-        ganancias = 100;
+        ganancias = 360;
     }
 
     @Override

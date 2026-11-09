@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Ruleta implements Runnable {
     int numero;
     int id;
-    int dinero = 20;
+    int dinero = 5000;
     int jugando = 0;
     boolean salida = false;
 
@@ -27,8 +27,8 @@ public class Ruleta implements Runnable {
         synchronized (this) {
             System.out.println("\nLa ruleta está girando... Introduce el número ganador:");
             System.out.println("Dinero en banca: " + dinero);
-            Scanner sc = new Scanner(System.in);
-            numero = sc.nextInt();
+
+            numero = (int) (Math.random() * 36) ;
             System.out.println("¡Ha salido el número: " + numero + "!");
 
             notifyAll();
