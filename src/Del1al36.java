@@ -17,12 +17,13 @@ public class Del1al36 extends Jugador implements Runnable {
                 if (saldo < 10) {
                     return false;
                 }
+                RULETA.setJugando(1);
 
                 numeroapostado = (int) (Math.random() * 36) + 1;
                 saldo -= 10;
                 RULETA.setDinero(10); // La banca recauda la apuesta de 10€
 
-                System.out.println("El jugador " + id + " ha apostado al número " + numeroapostado);
+                System.out.println("El jugador 1Al36" + id + " ha apostado al número " + numeroapostado);
 
                 RULETA.wait();
 
@@ -49,8 +50,9 @@ public class Del1al36 extends Jugador implements Runnable {
             if (!puede) {
                 // Si el juego ya terminó por quiebra, no imprimimos que se quedó sin dinero por error
                 if (!RULETA.salida) {
-                    System.out.println("El jugador " + id + " se ha quedado sin dinero");
+                    System.out.println("El jugador 1Al36 " + id + " se ha quedado sin dinero");
                     RULETA.setJugando(-1);
+                    RULETA.esperado-=1;
                 }
                 break;
             }
@@ -61,11 +63,11 @@ public class Del1al36 extends Jugador implements Runnable {
             }
 
             // Cuando RULETA.wait() se desbloquea, el hilo continúa aquí:
-            if (numeroapostado == RULETA.numero) {
+            if ((numeroapostado%2) == (RULETA.numero%2)) {
                 RULETA.pagarPremio(this, ganancias);
-                System.out.println("¡¡ El jugador " + id + " HA GANADO con el número " + numeroapostado + " !! Saldo actual: " + saldo);
+                System.out.println("¡¡ El jugador 1Al36" + id + " HA GANADO con el número " + numeroapostado + " !! Saldo actual: " + saldo);
             } else {
-                System.out.println("El jugador " + id + " perdió. Salió el " + RULETA.numero + ". Saldo actual: " + saldo);
+                System.out.println("El jugador 1Al36" + id + " perdió. Salió el " + RULETA.numero + ". Saldo actual: " + saldo);
             }
         }
     }

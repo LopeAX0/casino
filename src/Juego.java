@@ -8,6 +8,17 @@ public class Juego {
             b.start();
             ruleta.setJugando(1);
         }
+        for (int i=0;i<4;i++) {
+            Thread b = new Thread(new ParoImpar(i + 1, ruleta));
+            b.start();
+            ruleta.setJugando(1);
+        }
+        for (int i=0;i<4;i++) {
+            Thread b = new Thread(new Martingala(i + 1, ruleta));
+            b.start();
+            ruleta.setJugando(1);
+        }
+
         hiloRuleta.start();
 
 
