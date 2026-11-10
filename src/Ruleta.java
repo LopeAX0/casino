@@ -4,7 +4,7 @@ public class Ruleta implements Runnable {
     int numero;
     int dinero = 50000;
     int jugando = 0;
-    int esperado = 12;
+    int esperado = 4;
     boolean salida = false;
 
     public int getJugando() {
@@ -24,11 +24,24 @@ public class Ruleta implements Runnable {
     }
     public void tirada() throws InterruptedException {
         synchronized (this) {
+
+            if (esperado <= 0) {
+                salida = true;
+                notifyAll();
+                return;
+            }
+
+            while (esperado > jugando && !salida) {
+                wait();
+            }
+
             System.out.println("\n--------------------------------------------------");
             System.out.println("La ruleta está girando... Dinero en banca: " + dinero + "€");
 
             numero = (int) (Math.random() * 37); // Del 0 al 36
             System.out.println("¡Ha salido el número ganador: " + numero + "!");
+            System.out.println("\n--------------------------------------------------");
+
 
             notifyAll();
         }
@@ -66,7 +79,7 @@ public class Ruleta implements Runnable {
                         notifyAll();
                         break;
                     }
-                    if (jugando <= 0) {
+                    if (esperado <= 0) {
                         System.out.println("\n[FIN DEL JUEGO]: Todos los jugadores se han retirado.");
                         salida = true;
                         notifyAll();
