@@ -47,8 +47,7 @@ public class Martingala extends Jugador implements Runnable {
     }
 
     public void ganar(){
-        int premioTotal = sigiente * 360; // Premio proporcional a lo apostado
-        saldo += premioTotal;
+
         sigiente = 1; // Se reinicia el multiplicador a 1 tras ganar
     }
 
@@ -56,21 +55,17 @@ public class Martingala extends Jugador implements Runnable {
     public void run() {
         while (!RULETA.salida) {
             boolean puede = apostar();
-
             if (!puede) {
 
                 if (!RULETA.salida) {
                     System.out.println("El jugador martingala " + id + " se ha quedado sin dinero");
-
                     RULETA.esperado-=1;
                 }
                 break;
             }
-
             if (RULETA.salida) {
                 break;
             }
-
             // Comprobamos resultado
             if (numeroapostado == RULETA.numero) {
                 int premioPagado = sigiente * 360;

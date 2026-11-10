@@ -2,8 +2,7 @@ import java.util.Scanner;
 
 public class Ruleta implements Runnable {
     int numero;
-    int id;
-    int dinero = 5000;
+    int dinero = 50000;
     int jugando = 0;
     int esperado = 12;
     boolean salida = false;
@@ -23,7 +22,6 @@ public class Ruleta implements Runnable {
     public synchronized void setDinero(int cantidad) {
         this.dinero += cantidad;
     }
-
     public void tirada() throws InterruptedException {
         synchronized (this) {
             System.out.println("\n--------------------------------------------------");
@@ -35,10 +33,10 @@ public class Ruleta implements Runnable {
             notifyAll();
         }
     }
-
     public synchronized void pagarPremio(Jugador jugador, int pagar){
         if (dinero >= pagar){
             dinero -= pagar;
+            jugador.saldo+=pagar;
             // Nota: el saldo ya se actualiza en el método ganar o se suma aquí según prefieras
         } else if (dinero < pagar && dinero > 0) {
             dinero = 0;
@@ -46,7 +44,9 @@ public class Ruleta implements Runnable {
             salida = true;
             notifyAll();
         } else {
+            jugador.saldo+=dinero;
             dinero = 0;
+
             System.out.println("\n[FIN DEL JUEGO]: ¡La banca se ha quedado a 0!");
             salida = true;
             notifyAll();

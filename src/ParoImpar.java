@@ -79,11 +79,11 @@ public class ParoImpar extends Jugador implements Runnable{
             // Cuando RULETA.wait() se desbloquea, el hilo continúa aquí:
             if (eleccion.equals(salido)) {
                 RULETA.pagarPremio(this, ganancias);
-                System.out.println("¡¡ El jugador ParOImpar" + id + " HA GANADO con un número " + eleccion + " !! Saldo actual: " + saldo);
+                System.out.println("¡¡ El jugador ParOImpar " + id + " HA GANADO con un número " + eleccion + " !! Saldo actual: " + saldo);
 
             }
               else {
-                System.out.println("El jugador ParOImpar" + id + " perdió. Salió el " + RULETA.numero + ". Saldo actual: " + saldo);
+                System.out.println("El jugador ParOImpar " + id + " perdió. Salió el " + RULETA.numero + ". Saldo actual: " + saldo);
             }
             RULETA.setJugando(-1);
         }

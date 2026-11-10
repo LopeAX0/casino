@@ -63,12 +63,13 @@ public class Del1al36 extends Jugador implements Runnable {
             }
 
             // Cuando RULETA.wait() se desbloquea, el hilo continúa aquí:
-            if ((numeroapostado%2) == (RULETA.numero%2)) {
+            if (numeroapostado== RULETA.numero) {
                 RULETA.pagarPremio(this, ganancias);
-                System.out.println("¡¡ El jugador 1Al36" + id + " HA GANADO con el número " + numeroapostado + " !! Saldo actual: " + saldo);
+                System.out.println("¡¡ El jugador 1Al36 " + id + " HA GANADO con el número " + numeroapostado + " !! Saldo actual: " + saldo);
             } else {
-                System.out.println("El jugador 1Al36" + id + " perdió. Salió el " + RULETA.numero + ". Saldo actual: " + saldo);
+                System.out.println("El jugador 1Al36 " + id + " perdió. Salió el " + RULETA.numero + ". Saldo actual: " + saldo);
             }
+            RULETA.setJugando(-1);
         }
     }
 }
