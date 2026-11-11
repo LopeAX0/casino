@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class Ruleta implements Runnable {
     int numero;
-    int dinero = 50000;
+    int dinero = 5000;
     int jugando = 0;
-    int esperado = 4;
+    int esperado = 12;
     boolean salida = false;
 
     public int getJugando() {

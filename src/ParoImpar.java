@@ -67,7 +67,7 @@ public class ParoImpar extends Jugador implements Runnable{
             }
             String salido;
             if (RULETA.numero==0) {
-                salido = "Par";
+                salido = "ignorar";
             }
             else if (RULETA.numero%2==0) {
                 salido = "Par";
